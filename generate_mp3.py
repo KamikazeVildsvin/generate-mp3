@@ -36,10 +36,29 @@ def move_mp3s_to_dap_player(path_to_folder):
     subprocess.run(command, stdout=sys.stdout, stderr=sys.stderr, shell=True)
     print("Copying files completed...")
 
+def print_help():
+    help_str = """
+    -- MP3 convertion tool --
+    Simple CLI for MP3 convertion.
+    
+    # Arguments
+    filepath: path to the folder that contains
+    the files that are to be converted to mp3.
+    """
+    print(help_str)
+
 def main():
     if len(sys.argv) != 2:
         exit("Please provide the path to the folder that is to be converted!")
-    path_to_folder = path.abspath(sys.argv[1])
+    input_arg = sys.argv[1]
+    if input_arg == "--help" or input_arg == "-h":
+        print_help()
+        exit()
+    path_to_folder = path.abspath(input_arg)
+    if not path.isdir(path_to_folder):
+        err_str = "The provided folder path doesn't exists!\n" \
+        "Run `python3 generate_mp3.py -h` for help."
+        exit(err_str)
     print(f"Generating MP3s recursivly from directory: {path_to_folder}")
     convert_to_mp3(path_to_folder)
     convert_filename_to_title(path_to_folder)
