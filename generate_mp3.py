@@ -39,11 +39,23 @@ def move_mp3s_to_dap_player(path_to_folder):
 def print_help():
     help_str = """
     -- MP3 convertion tool --
-    Simple CLI for MP3 convertion.
+    Simple CLI for automated MP3 convertion and 
+    uploading to Snowsky Echo Mini DAP.
+
+    For correct operation, ensure that the Snowsky
+    Echo Mini is mounted.
+
+    To use the script run the following command
+    `python3 generate_mp3.py <path-to-folder>`
     
     # Arguments
     filepath: path to the folder that contains
     the files that are to be converted to mp3.
+
+    ## Dependencies
+    - ffmpeg
+    - exiftool
+    - rsync
     """
     print(help_str)
 
